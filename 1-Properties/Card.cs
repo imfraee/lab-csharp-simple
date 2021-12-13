@@ -19,9 +19,9 @@ namespace Properties
         /// <param name="ordinal">the ordinal number of the card.</param>
         public Card(string name, string seed, int ordinal)
         {
-            this.name = name;
-            this.ordinal = ordinal;
-            this.seed = seed;
+            _name = name;
+            _ordinal = ordinal;
+            _seed = seed;
         }
 
         /// <summary>
@@ -32,33 +32,17 @@ namespace Properties
         {
         }
 
-        // TODO improve
-        public string GetSeed()
-        {
-            return this.seed;
-        }
+        public string GetSeed() => _seed;
 
-        // TODO improve
-        public string GetName()
-        {
-            return this.name;
-        }
-
-        // TODO improve
-        public int GetOrdinal()
-        {
-            return this.ordinal;
-        }
+        public string GetName() => _name;
+    
+        public int GetOrdinal() => _ordinal;
 
         /// <inheritdoc cref="object.ToString"/>
-        public override string ToString()
-        {
-            // TODO understand string interpolation
-            return $"{this.GetType().Name}(Name={this.GetName()}, Seed={this.GetSeed()}, Ordinal={this.GetOrdinal()})";
-        }
+        public override string ToString() => $"{this.GetType().Name}(Name={this.GetName()}, Seed={this.GetSeed()}, Ordinal={this.GetOrdinal()})";
 
-        // TODO generate Equals(object obj)
+        public override bool Equals(object obj) => base.Equals(obj);
 
-        // TODO generate GetHashCode()
+        public override int GetHashCode() => base.GetHashCode();
     }
 }
