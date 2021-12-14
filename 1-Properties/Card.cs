@@ -19,30 +19,50 @@ namespace Properties
         /// <param name="ordinal">the ordinal number of the card.</param>
         public Card(string name, string seed, int ordinal)
         {
-            _name = name;
-            _ordinal = ordinal;
-            _seed = seed;
+            this.name = name;
+            this.ordinal = ordinal;
+            this.seed = seed;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Card"/> class.
         /// </summary>
         /// <param name="tuple">the informations about the card as a tuple.</param>
-        internal Card(Tuple<string, string, int> tuple) : this(tuple.Item1, tuple.Item2, tuple.Item3)
+        internal Card(Tuple<string, string, int> tuple) 
+            : this(tuple.Item1, tuple.Item2, tuple.Item3)
         {
         }
 
-        public string GetSeed() => _seed;
-
-        public string GetName() => _name;
+        public string Seed {
+            get{ return this.seed };
+        }
+        public string Name => this.name;
     
-        public int GetOrdinal() => _ordinal;
+        public int Ordinal => this.ordinal;
 
         /// <inheritdoc cref="object.ToString"/>
         public override string ToString() => $"{this.GetType().Name}(Name={this.GetName()}, Seed={this.GetSeed()}, Ordinal={this.GetOrdinal()})";
 
-        public override bool Equals(object obj) => base.Equals(obj);
+        /// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+        public bool Equals(Card other)
+        {
+            return string.Equals(this.seed, other.seed)
+                && string.Equals(this.name, other.name)
+                && this.ordinal == other.ordinal;
+        }
 
-        public override int GetHashCode() => base.GetHashCode();
+        /// <inheritdoc cref="object.Equals(object?)"/>>
+        public override bool Equals(object obj) {
+
+            if (obj is null) return false;
+
+            if (this == obj) return true;
+
+            if (obj.GetType != this.GetType) return false;
+
+            return this.Equals(obj as Card);
+        }
+        /// <inheritdoc cref="object.GetHashCode"/>>
+        public override int GetHashCode() => Hashcode.Combine(this.name, this.ordinal, this.seed);
     }
 }
