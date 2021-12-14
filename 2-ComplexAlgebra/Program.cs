@@ -70,10 +70,10 @@ namespace ComplexAlgebra
             // Console.WriteLine("---");
             //
             // Console.WriteLine(minusI.Real);  // 0
-            // Console.WriteLine(minusI.Imaginary);  // -1
-            // Console.WriteLine(minusI.Modulus);  // 1
-            // Console.WriteLine(minusI.Phase);  // -1,5707963267948966 (Math.PI / 2)
-            // Console.WriteLine(minusI.ToString());  // -i
+            Console.WriteLine(minusI.Imaginary);  // -1
+            Console.WriteLine(minusI.Modulus);  // 1
+            Console.WriteLine(minusI.Phase);  // -1,5707963267948966 (Math.PI / 2)
+            Console.WriteLine(minusI.ToString());  // -i
         }
     }
 }
